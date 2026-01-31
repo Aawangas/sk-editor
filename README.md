@@ -1,72 +1,81 @@
-# 3D Skeleton Editor
+# 3D Skeleton Editor (SK-Editor)
 
-A web-based 3D skeleton editor designed for viewing and modifying skeletal data, with seamless support for PyTorch (`.pt`) and JSON formats.
+A web-based 3D skeleton editor designed for viewing and modifying skeletal data, with seamless support for PyTorch (`.pt`) formats.
 
-## Project Structure
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.6+](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org/downloads/)
 
-- **`data/`**: Contains skeleton data files (`.pt`, `.json`) and example files.
-- **`src/`**: The core application code, including the web interface and the Python backend server.
+## 🌟 Core Features
+
+- **Web-based 3D Editing**: Modify bone positions directly in 3D space using interactive transform controls.
+- **Native PT Support**: Import and export PyTorch `.pt` files directly without manual conversion.
+- **Metadata Preservation**: Maintains original bone names, parent-child hierarchies, and tensor structures during the editing process.
+- **Professional UI**: Clean, AISTudio-inspired interface with shortcut support for an efficient workflow.
+- **Real-time Preview**: Changes are reflected instantly in the 3D viewport.
+
+## 📂 Project Structure
+
+- **`src/`**: Core application code.
   - `server.py`: Integrated backend handling file I/O and PT conversion.
   - `index.html`: Main editor interface.
-  - `js/`: Frontend logic (Three.js, Skeleton management, Import/Export).
-- **`scripts/`**: Utility scripts for environment setup and legacy format conversion.
+  - `js/`: Frontend logic (Three.js rendering, skeleton management, import/export).
+  - `style.css`: Editor styling.
+- **`data/`**: Example skeleton data files (`.pt`).
+- **`scripts/`**: Utility scripts.
+  - `Launch Editor.command`: One-click launch script (macOS/Linux).
+  - `convert_skeleton.py`: Offline format conversion tools.
 - **`requirements.txt`**: Python dependencies.
 
-## Key Features
+## 🚀 Getting Started
 
-- **Web-based 3D Editing**: Modify bone positions directly in a 3D space.
-- **PT & JSON Integration**: Seamlessly import and export PyTorch `.pt` files without needing manual terminal conversion.
-- **Preserved Metadata**: Maintains original bone names and parent-child hierarchies during round-trip editing.
-- **AISTudio Style UI**: Clean, professional interface for efficient workflow.
+### 1. Prerequisites
 
-## Getting Started
+Ensure you have Python 3.6 or higher installed on your system.
 
-### 1. Install Dependencies
+### 2. Install Dependencies
 
-Ensure you have Python 3.6+ and the required libraries installed:
+Run the following command in the project root:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Launch the Editor
+### 3. Launch the Editor
 
-Run the integrated server from the `src` directory:
+You can start the editor using either of these methods:
 
+**Method A: Run directly with Python**
 ```bash
 python3 src/server.py
 ```
 
-Or use the provided script (macOS/Linux):
-
+**Method B: Use the launch script (macOS/Linux)**
 ```bash
 bash scripts/"Launch Editor.command"
 ```
 
-The editor will automatically open in your default browser at `http://localhost:8000`.
+Once started, the editor will automatically open in your default browser at `http://localhost:8000`.
 
-## How to Use
+## 🛠 How to Use
 
 ### Importing Skeletons
-- **JSON**: Click "📥 Import Skeleton (JSON)" and select your file.
-- **PyTorch (PT)**: Click "📥 Import PT Format". The backend will automatically handle the conversion.
-
-### Exporting Skeletons
-1. Select your desired format from the "Export Format" dropdown (Standard JSON, Simple JSON, or PyTorch PT).
-2. Click "📤 Export Skeleton".
-   - If **PT** is selected, the server will generate the `.pt` file and trigger a browser download.
+- **PyTorch (PT) Format**: Click "📥 Import PT Format". The backend automatically converts the tensor data for the web interface.
 
 ### Editing
-- **G / R / S**: Switch between Translate, Rotate, and Scale modes.
+- **Q / W / E**: Toggle between **Translate**, **Rotate**, and **Scale** modes.
 - **Left Click**: Select a bone.
-- **Drag**: Move the selected bone (in Translate mode).
-- **Shift + Click**: Select multiple bones.
-- **Delete**: Remove selected bones.
+- **Drag Gizmo**: Adjust bone position/orientation in 3D space.
+- **Delete**: Remove the selected bone.
 
-## Technical Details
+### Exporting Data
+1. Select **PyTorch PT** from the "Export Format" dropdown.
+2. Click "📤 Export Skeleton".
+   - The backend reconstructs the tensor structure and triggers a browser download.
 
-The editor uses **Three.js** for 3D rendering and a lightweight **Python (BaseHTTP)** backend for processing PyTorch tensors. When exporting to PT, the backend ensures that the `skeleton` tensor, `bone_names` list, and `parent_mapping` dictionary match the original format exactly.
+## 🔬 Technical Details
 
-## License
+The editor uses **Three.js** for 3D rendering and a lightweight **Python BaseHTTP** backend. When handling `.pt` files, the backend ensures that the `skeleton` tensor, `bone_names` list, and `parent_mapping` dictionary match the original format exactly, making the exported data ready for deep learning training or inference.
 
-MIT License
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
