@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Skeleton Editor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <canvas id="canvas"></canvas>
+        
+        <div id="toolbar">
+            <h2>⚙️ SK-Editor</h2>
+            
+            <div class="tool-section">
+                <h3>File Operations</h3>
+                <div class="button-group">
+                    <button id="importPTBtn" class="btn btn-primary">📥 Import PT Skeleton</button>
+                    <button id="exportBtn" class="btn btn-success">📤 Export PT Skeleton</button>
+                    <input type="file" id="importPTFile" accept=".pt" style="display: none;">
+                </div>
+            </div>
+
+            <div class="tool-section" style="display: none;">
+                <h3>Export Format</h3>
+                <select id="exportFormat" class="select-input">
+                    <option value="pt" selected>PyTorch PT Format</option>
+                    <option value="standard">Standard JSON</option>
+                    <option value="simple">Simple JSON</option>
+                </select>
+            </div>
+
+            <div class="tool-section">
+                <h3>Skeleton Tools</h3>
+                <div class="button-group">
+                    <button id="addBoneBtn" class="btn btn-outline">➕ Add Bone</button>
+                    <button id="deleteBoneBtn" class="btn btn-danger-outline">🗑️ Delete Bone</button>
+                    <button id="resetBtn" class="btn btn-outline">🔄 Reset View</button>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>View Control</h3>
+                <div class="button-group horizontal">
+                    <button id="topView" class="btn btn-small">Top</button>
+                    <button id="frontView" class="btn btn-small">Front</button>
+                    <button id="sideView" class="btn btn-small">Side</button>
+                    <button id="perspectiveView" class="btn btn-small active">Persp</button>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3>Display</h3>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="showGrid" checked>
+                    Show Grid
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="showAxes" checked>
+                    Show Axes
+                </label>
+            </div>
+
+            <div class="tool-section">
+                <h3>Bone Inspector</h3>
+                <div id="boneInfo" class="info-panel">
+                    <p>No bone selected</p>
+                </div>
+                <div class="input-group">
+                    <label>Name:</label>
+                    <input type="text" id="boneName" placeholder="Bone name">
+                </div>
+            </div>
+        </div>
+
+        <div id="help-panel">
+            <h3>Usage</h3>
+            <ul>
+                <li><strong>Rotate Orbit</strong> <span>Left Click + Drag</span></li>
+                <li><strong>Pan View</strong> <span>Right Click + Drag</span></li>
+                <li><strong>Zoom In/Out</strong> <span>Scroll</span></li>
+                <li><strong>Select Bone</strong> <span>Click</span></li>
+                <li><strong>Move Bone</strong> <span>Drag</span></li>
+                <li><strong>Multi-select</strong> <span>Shift + Click</span></li>
+                <li><strong>Delete</strong> <span>Del / Backspace</span></li>
+            </ul>
+        </div>
+
+        <div id="context-menu" class="context-menu">
+            <div class="context-item" data-action="rename">Rename</div>
+            <div class="context-item" data-action="duplicate">Duplicate</div>
+            <div class="context-divider"></div>
+            <div class="context-item" data-action="delete">Delete</div>
+        </div>
+
+        <!-- PT 导出处理已集成到后端 -->
+    </div>
+
+    <script src="js/three.min.js"></script>
+    <script src="js/OrbitControls.js"></script>
+    <script src="js/skeleton.js"></script>
+    <script src="js/importExport.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

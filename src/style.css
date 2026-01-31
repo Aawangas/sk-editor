@@ -1,0 +1,236 @@
+:root {
+    --bg-color: #f8f9fa;
+    --panel-bg: rgba(255, 255, 255, 0.95);
+    --text-color: #2d3436;
+    --accent-color: #4a90e2;
+    --border-color: #dfe6e9;
+    --danger-color: #ff7675;
+    --success-color: #55efc4;
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    overflow: hidden;
+    font-size: 14px;
+}
+
+#container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+#canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* UI Panels */
+#toolbar, #help-panel {
+    position: absolute;
+    background: var(--panel-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    z-index: 10;
+}
+
+#toolbar {
+    top: 20px;
+    left: 20px;
+    width: 300px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+}
+
+#help-panel {
+    bottom: 20px;
+    right: 20px;
+    width: 280px;
+}
+
+h2 {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #1e272e;
+}
+
+h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #b2bec3;
+    margin-bottom: 12px;
+    margin-top: 18px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+}
+
+.tool-section {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f1f2f6;
+}
+
+.tool-section:last-child {
+    border-bottom: none;
+}
+
+/* Buttons */
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.btn {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.btn-primary {
+    background: #1e272e;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #485460;
+    transform: translateY(-1px);
+}
+
+.btn-success {
+    background: #05c46b;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #0be881;
+}
+
+.btn-outline {
+    background: white;
+    border: 1.5px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.btn-outline:hover {
+    background: #f1f2f6;
+    border-color: #b2bec3;
+}
+
+.btn-danger-outline {
+    background: white;
+    border: 1.5px solid #ff7675;
+    color: #ff7675;
+}
+
+.btn-danger-outline:hover {
+    background: #ff7675;
+    color: white;
+}
+
+/* Horizontal small buttons */
+.tool-section .button-group.horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.btn-small {
+    flex: 1;
+    min-width: 60px;
+    padding: 7px;
+    background: white;
+    border: 1.5px solid var(--border-color);
+    font-size: 0.75rem;
+}
+
+.btn-small.active {
+    background: #1e272e;
+    color: white;
+    border-color: #1e272e;
+}
+
+/* Form Controls */
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border-color);
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus {
+    border-color: var(--accent-color);
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: #636e72;
+}
+
+/* Info Panel */
+.info-panel {
+    background: #fdfdfd;
+    border: 1.5px solid var(--border-color);
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+.bone-name { font-weight: 700; color: #1e272e; margin-bottom: 6px; font-size: 1rem; }
+.bone-detail { color: #636e72; font-family: 'JetBrains Mono', 'Roboto Mono', monospace; font-size: 0.75rem; }
+
+/* Help Panel Lists */
+#help-panel h3 { margin-top: 0; }
+#help-panel ul { list-style: none; padding-left: 0; }
+#help-panel li {
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+    color: #636e72;
+    display: flex;
+    justify-content: space-between;
+}
+#help-panel strong { color: #1e272e; font-weight: 600; }
+
+/* Modal (Legacy removal) */
+.modal { display: none; }
